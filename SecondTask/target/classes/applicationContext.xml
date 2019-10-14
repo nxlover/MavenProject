@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    <bean id="Car" class="com.zut.pojo.Car"/>
+    <bean id="boss1" class="com.zut.pojo.Boss">
+        <constructor-arg index="0" value="老板1"/>
+        <constructor-arg index="1" value="公司1"/>
+        <constructor-arg index="2" ref="car1"/>
+        <constructor-arg index="3" value="篮球"/>
+    </bean>
+    <bean id="boss2" class="com.zut.pojo.Boss">
+        <constructor-arg index="0" value="老板2"/>
+        <constructor-arg index="1" value="公司2"/>
+        <constructor-arg index="2" ref="car2"/>
+        <constructor-arg index="3" value="乒乓球"/>
+    </bean>
+    <bean id="car1" class="com.zut.pojo.Car">
+        <constructor-arg index="0" value="绿色"/>
+        <constructor-arg index="1" value="保时捷"/>
+        <constructor-arg index="2" value="2.9L"/>
+    </bean>
+    <bean id="car2" class="com.zut.pojo.Car">
+        <constructor-arg index="0" value="白色"/>
+        <constructor-arg index="1" value="兰博基尼"/>
+        <constructor-arg index="2" value="6.5L"/>
+    </bean>
+    <bean id="meeting1" class="com.zut.pojo.Meeting">
+        <constructor-arg index="0" value="会议1"/>
+        <constructor-arg index="1">
+            <list>
+                <ref bean="boss1"/>
+                <ref bean="boss2"/>
+            </list>
+        </constructor-arg>
+    </bean>
+    <!--显示形式配置-->
+    <bean id="bossDao" class="com.zut.dao.BossDaoImpl"/>
+    <bean id="bossService" class="com.zut.service.BossServiceImpl">
+        <property name="bossDao" ref="bossDao"/>
+    </bean>
+    <!--扫描指定包下的所有Bean类，进行注解注释(注解形式配置)-->
+    <context:component-scan base-package="com.zut"/>
+</beans>
