@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <classPathEntry
+            location="D:/Java/Maven-Repository/mysql/mysql-connector-java/5.1.41/mysql-connector-java-5.1.41.jar"/>
+    <context id="my" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="false"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!-- JDBC驱动 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost/spring?useUnicode=true&amp;characterEncoding=utf8"
+                        userId="root"
+                        password="root"/>
+        <!-- 数据表对应的model 层  -->
+        <javaModelGenerator targetPackage="com.zut.pojo" targetProject="src/main/java">
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- sql mapper 隐射配置文件 -->
+        <sqlMapGenerator targetPackage="com.zut.mapper" targetProject="src/main/java"/>
+        <!-- mapper接口 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zut.dao"
+                             targetProject="src/main/java"/>
+        <table tableName="orders">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+
+    </context>
+</generatorConfiguration>
